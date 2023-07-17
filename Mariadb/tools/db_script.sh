@@ -1,0 +1,17 @@
+#!/bin/bash
+
+MYSQL_USER="aelandal"
+MYSQL_PASSWD="aelandal123"
+MYSQL_DB="aelandaldb"
+
+
+SCRIPT=$(cat <<EOT
+CREATE USER '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWD}';
+CREATE DATABASE ${MYSQL_DB};
+GRANT ALL PRIVILEGES ON ${MYSQL_DB}.* TO '${MYSQL_USER}'@'%';
+FLUSH PRIVILEGES;
+EOT
+)
+
+echo "${SCRIPT}" | mysql -u root
+
