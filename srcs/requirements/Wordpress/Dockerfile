@@ -5,8 +5,7 @@ RUN apt-get update && apt-get install curl -y && apt-get install php-fpm -y
 RUN curl -O https://wordpress.org/latest.tar.gz ;\
 	tar -xzvf latest.tar.gz ;\
 	rm latest.tar.gz ;\
-	mkdir -p /usr/share/nginx/html;\
-	mv wordpress /usr/share/nginx/html/
+	mkdir -p /var/www/html/aelandal_db
 
 COPY script.sh ./
 
