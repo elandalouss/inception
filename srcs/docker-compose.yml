@@ -1,0 +1,52 @@
+version : '3.5'
+
+services :
+    nginx :
+      build:
+        context : requirements/Nginx/
+        dockerfile : Dockerfile
+      ports : 
+        - "443:443"
+      container_name : nginx
+      env_file : .env
+      restart : always
+      volumes : 
+          - /home/aelandal/data/wordpress:/var/www/html/aelandal_db
+      depends_on:
+        - wordpress
+      networks :
+          - link
+    wordpress :
+      build : 
+        context : requirements/Wordpress/
+        dockerfile : Dockerfile
+      container_name : Wordpress
+      env_file : .env
+      restart : always
+      volumes :
+          - /home/aelandal/data/wordpress:/var/www/html/aelandal_db
+      networks :
+          - link
+      environment:
+          WP_DB_NAME: ${WP_DB_NAME}
+          WP_USER_NAME: ${WP_USER_NAME}
+          WP_USE_PASSWD: ${WP_USE_PASSWD}
+          WP_DB_HOST: ${WP_DB_HOST}
+#      depends_on:
+#        - mariadb
+#    mariadb :
+#      build : 
+#        context : requirements/Mariadb/
+#        dockerfile : Dockerfile
+#      container_name : Mariadb
+#      env_file : .env
+#      restart : always
+#      volumes :
+#        - /home/aelandal/data/mariadb:/var/lib/mysql
+#      networks :
+#        - link
+networks :
+  link:
+    name: link
+    driver: "bridge" 
+
