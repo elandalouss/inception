@@ -1,7 +1,7 @@
 FROM debian:buster
 
 RUN apt-get update && apt-get install -y curl php7.3 \
-	php7.3-fpm php7.3-mysql mariadb-client
+	php7.3-fpm php7.3-mysql mariadb-client nginx
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar ;\
 	chmod +x wp-cli.phar ;\

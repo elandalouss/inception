@@ -32,19 +32,24 @@ services :
           WP_USER_NAME: ${WP_USER_NAME}
           WP_USE_PASSWD: ${WP_USE_PASSWD}
           WP_DB_HOST: ${WP_DB_HOST}
-#      depends_on:
-#        - mariadb
-#    mariadb :
-#      build : 
-#        context : requirements/Mariadb/
-#        dockerfile : Dockerfile
-#      container_name : Mariadb
-#      env_file : .env
-#      restart : always
-#      volumes :
-#        - /home/aelandal/data/mariadb:/var/lib/mysql
-#      networks :
-#        - link
+      depends_on:
+        - mariadb
+    mariadb :
+      build : 
+        context : requirements/Mariadb/
+        dockerfile : Dockerfile
+      container_name : Mariadb
+      env_file : .env
+      restart : always
+      volumes :
+        - /home/aelandal/data/mariadb:/var/lib/mysql
+      networks :
+        - link
+          #depends_on:
+          #- wordpress
+
+
+
 networks :
   link:
     name: link

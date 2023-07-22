@@ -11,8 +11,8 @@ cd /var/www/html/aelandal_db
 rm -rf /var/www/html/aelandal_db/*
 
 wp core download --allow-root
-wp core config --dbname=${WP_DB_NAME} --dbuser=${WP_USER_NAME} --dbpass=${WP_USE_PASSWD} --dbhost=mariadb --allow-root
 
+#wp config create --dbname=${WP_DB_NAME} --dbuser=${WP_USER_NAME} --dbpass=${WP_USE_PASSWD} --dbhost=localhost --allow-root
 exec php-fpm7.3 -F -R
 
 
