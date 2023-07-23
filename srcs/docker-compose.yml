@@ -1,4 +1,4 @@
-version : '3.5'
+version : '3.7'
 
 services :
     nginx :
@@ -20,32 +20,33 @@ services :
       build : 
         context : requirements/Wordpress/
         dockerfile : Dockerfile
-      container_name : Wordpress
+#      environment:
+#        WP_DB_NAME: ${WP_DB_NAME}
+#        WP_USER_NAME: ${WP_USER_NAME}
+#        WP_USE_PASSWD: ${WP_USE_PASSWD}
+#        WP_DB_HOST: ${WP_DB_HOST}
+
+      container_name : wordpress
       env_file : .env
       restart : always
       volumes :
           - /home/aelandal/data/wordpress:/var/www/html/aelandal_db
       networks :
           - link
-      environment:
-          WP_DB_NAME: ${WP_DB_NAME}
-          WP_USER_NAME: ${WP_USER_NAME}
-          WP_USE_PASSWD: ${WP_USE_PASSWD}
-          WP_DB_HOST: ${WP_DB_HOST}
       depends_on:
         - mariadb
     mariadb :
       build : 
         context : requirements/Mariadb/
         dockerfile : Dockerfile
-      container_name : Mariadb
+      container_name : mariab
       env_file : .env
       restart : always
       volumes :
         - /home/aelandal/data/mariadb:/var/lib/mysql
       networks :
         - link
-          #depends_on:
+          #  depends_on:
           #- wordpress
 
 

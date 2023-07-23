@@ -8,8 +8,9 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 	mv wp-cli.phar /usr/local/bin/wp ;\
 	mkdir -p /var/www/html/aelandal_db/
 	
+#ARG WP_DB_NAME WP_USER_NAME WP_USE_PASSWD WP_DB_HOS
 
-
+#WORKDIR /var/www/html/aelandal_db
 
 #RUN curl -O https://wordpress.org/latest.tar.gz ;\
 #	tar -xzvf latest.tar.gz ;\
@@ -20,7 +21,6 @@ COPY scripts/script.sh ./
 
 RUN chmod +x /script.sh
 
-#WORKDIR /var/www/html/aelandal_db
 
 CMD ["sh", "/script.sh"]
 
