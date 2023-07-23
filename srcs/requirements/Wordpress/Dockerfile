@@ -21,6 +21,7 @@ COPY scripts/script.sh ./
 
 RUN chmod +x /script.sh
 
+EXPOSE 9000
 
 CMD ["sh", "/script.sh"]
 

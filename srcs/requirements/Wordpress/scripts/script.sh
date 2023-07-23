@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 WP_DB_NAME=aelandal
 WP_USER_NAME=aelandal
 WP_USE_PASSWD=aelandal911

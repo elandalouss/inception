@@ -10,14 +10,15 @@ COPY tools/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
 COPY tools/db_script.sh /
 
-RUN chmod +x db_script.sh
 
 RUN mkdir -p /var/run/mysqld
 RUN chown -R mysql:mysql /var/run/mysqld
 RUN chmod -R 777 /var/run/mysqld
 
+RUN chmod +x db_script.sh && ./db_script.sh
+
  
-ENTRYPOINT ./db_script.sh
+#ENTRYPOINT ./db_script.sh
 
 EXPOSE 3306
 
