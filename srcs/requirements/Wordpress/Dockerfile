@@ -6,11 +6,11 @@ RUN apt-get update && apt-get install -y curl php7.3 \
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar ;\
 	chmod +x wp-cli.phar ;\
 	mv wp-cli.phar /usr/local/bin/wp ;\
-	mkdir -p /var/www/html/aelandal_db/
+	mkdir -p /var/www/html/
 	
 #ARG WP_DB_NAME WP_USER_NAME WP_USE_PASSWD WP_DB_HOS
 
-WORKDIR /var/www/html/aelandal_db
+WORKDIR /var/www/html/
 
 RUN curl -O https://wordpress.org/latest.tar.gz ;\
 	tar -xzvf latest.tar.gz ;\
@@ -18,7 +18,11 @@ RUN curl -O https://wordpress.org/latest.tar.gz ;\
 
 COPY scripts/script.sh /
 
+COPY scripts/wp-config.php /var/www/html/wordpress
+
 RUN chmod +x /script.sh
+
+WORKDIR /var/www/html/wordpress
 
 EXPOSE 9000
 
