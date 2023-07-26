@@ -2,24 +2,23 @@ FROM debian:buster
 
 RUN apt-get update && apt-get install -y mariadb-server
 
-ARG MYSQL_ROOT_PASSWD MYSQL_DB MYSQL_USER MYSQL_PASSWD
+#COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/
+#RUN chown mysql:mysql /etc/mysql/mariadb.conf.d/50-server.cnf
+#RUN chmod 644 /etc/mysql/mariadb.conf.d/50-server.cnf
 
-#to check if mariadb server is lisenning to all ip addresses 
-#ss -tuln | grep 3306
-COPY tools/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+RUN sed -i 's/bind-address = 127.0.0.1/bind-address = 0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf
 
-COPY tools/db_script.sh /
+RUN chown -R mysql:mysql /var/lib/mysql
+RUN chmod 777 /var/lib/mysql/
 
-
-RUN mkdir -p /var/run/mysqld
+RUN mkdir -p /var/run/mysqld/
 RUN chown -R mysql:mysql /var/run/mysqld
-RUN chmod -R 777 /var/run/mysqld
+RUN chmod 777 /var/run/mysqld/
 
-RUN chmod +x db_script.sh && ./db_script.sh
-
- 
-#ENTRYPOINT ./db_script.sh
+COPY tools/auto-mysql-ins.sh /
+RUN chmod +x /auto-mysql-ins.sh
 
 EXPOSE 3306
 
-CMD mysqld
+ENTRYPOINT [ "./auto-mysql-ins.sh" ]
+
