@@ -11,6 +11,7 @@ MYSQL_DB="aelandaldb"
 service mysql start
 
 
+#service mysql restart
 
 #SCRIPT=$(cat <<EOT
 #CREATE DATABASE IF NOT EXISTS ${MYSQL_DB};
@@ -46,7 +47,7 @@ mysql -u root -e "FLUSH PRIVILEGES;"
 
 
 #mysql -u root < mysql.sql
-service mysql stop
+#service mysql stop
 
 mysqld
 

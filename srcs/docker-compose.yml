@@ -44,6 +44,8 @@ services :
       container_name : mariab
       env_file : .env
       restart : always
+      ports:
+        - "3306:3306"
       volumes :
         - /home/aelandal/data/mariadb:/var/lib/mysql
       networks :
