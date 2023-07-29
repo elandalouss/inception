@@ -8,7 +8,7 @@ services :
       ports : 
         - "443:443"
       container_name : nginx
-      env_file : .env
+        #env_file : .env
       restart : always
       volumes : 
           - /home/aelandal/data/wordpress:/var/www/html/wordpress
@@ -27,7 +27,7 @@ services :
 #        WP_DB_HOST: ${WP_DB_HOST}
 
       container_name : wordpress
-      env_file : .env
+        #env_file : .env
       restart : always
       ports:
         - "9000:9000"
@@ -42,7 +42,7 @@ services :
         context : requirements/Mariadb/
         dockerfile : Dockerfile
       container_name : mariab
-      env_file : .env
+        #env_file : .env
       restart : always
       ports:
         - "3306:3306"
@@ -52,8 +52,6 @@ services :
         - link
           #  depends_on:
           #- wordpress
-
-
 
 networks :
   link:
