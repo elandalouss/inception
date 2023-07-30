@@ -3,10 +3,10 @@ FROM debian:buster
 RUN apt-get update && apt-get install -y curl php7.3 \
 	php7.3-fpm php7.3-mysql mariadb-client nginx
 
-#RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar ;\
-#	chmod +x wp-cli.phar ;\
-#	mv wp-cli.phar /usr/local/bin/wp ;\
-#	mkdir -p /var/www/html/
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar ;\
+	chmod +x wp-cli.phar ;\
+	mv wp-cli.phar /usr/local/bin/wp ;\
+	mkdir -p /var/www/html/
 	
 #ARG WP_DB_NAME WP_USER_NAME WP_USE_PASSWD WP_DB_HOS
 
@@ -18,7 +18,7 @@ WORKDIR /var/www/html/
 
 COPY scripts/script.sh /
 
-COPY scripts/wp-config.php /
+#COPY scripts/wp-config.php /
 
 RUN chmod +x /script.sh
 

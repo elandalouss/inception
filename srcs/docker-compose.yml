@@ -1,13 +1,13 @@
 version : '3.7'
 
 volumes:
-  mariadb:
+  wordpress :
     driver: local
     driver_opts:
         o: bind
         type: none
         device: /home/aelandal/data/wordpress
-  wordpress :
+  mariadb :
     driver: local
     driver_opts:
         o: bind

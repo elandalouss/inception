@@ -2,7 +2,7 @@
 
 MYSQL_USER="aelandal"
 MYSQL_PASSWD="aelandal911"
-MYSQL_DB="aelandaldb"
+MYSQL_DB="aelandal_db"
 service mysql start
 
 mysql -u root -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DB;"
