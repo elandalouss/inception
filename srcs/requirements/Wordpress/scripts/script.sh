@@ -21,8 +21,7 @@ sed -i 's/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/' /etc/php/7.3/fpm/
 curl -O https://wordpress.org/latest.tar.gz
 tar -xzvf latest.tar.gz 
 rm -rf latest.tar.gz
-cp -f /var/www/html/wordpress/wordpress/* /var/www/html/wordpress/
-rm -rf /var/www/html/wordpress/wordpress
+#rm -rf /var/www/html/wordpress/wordpress
 chown -R www-data:www-data /var/www/html/wordpress/*
 cd /var/www/html/wordpress
 mv /wp-config.php /var/www/html/wordpress

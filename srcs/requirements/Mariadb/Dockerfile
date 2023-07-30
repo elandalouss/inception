@@ -24,7 +24,7 @@ RUN ./script.sh
 
 EXPOSE 3306
 
-ENTRYPOINT [ "mysqld" ]
+#ENTRYPOINT [ "mysqld" ]
 
-#CMD ["mysqld"]
+CMD ["mysqld"]
 

@@ -1,5 +1,19 @@
 version : '3.7'
 
+volumes:
+  mariadb:
+    driver: local
+    driver_opts:
+        o: bind
+        type: none
+        device: /home/aelandal/data/wordpress
+  wordpress :
+    driver: local
+    driver_opts:
+        o: bind
+        type: none
+        device : /home/aelandal/data/mariadb
+
 services :
     nginx :
       build:
@@ -11,7 +25,7 @@ services :
         #env_file : .env
       restart : always
       volumes : 
-          - /home/aelandal/data/wordpress:/var/www/html/wordpress
+          - wordpress:/var/www/html/wordpress
       depends_on:
         - wordpress
       networks :
@@ -29,10 +43,8 @@ services :
       container_name : wordpress
         #env_file : .env
       restart : always
-      ports:
-        - "9000:9000"
       volumes :
-          - /home/aelandal/data/wordpress:/var/www/html/wordpress
+          - wordpress:/var/www/html/wordpress
       networks :
           - link
       depends_on:
@@ -44,10 +56,8 @@ services :
       container_name : mariab
         #env_file : .env
       restart : always
-      ports:
-        - "3306:3306"
       volumes :
-        - /home/aelandal/data/mariadb:/var/lib/mysql
+        - mariadb:/var/lib/mysql
       networks :
         - link
           #  depends_on:
