@@ -1,17 +1,17 @@
 #!/bin/bash
 
-WP_DB_NAME=aelandal
+WP_DB_NAME=aelandal_db
 
 WP_USER_NAME=aelandal
 WP_USE_PASSWD=aelandal911
 WP_DB_HOST=mariadb
 DOMAIN_NAME=aelandal.42.fr
-WP_ADMIN_USER=aelandal
-WP_ADMIN_PW=aelandal911
-WP_ADMIN_EMAIL=aelandal@wa3.3iw
+WP_ADMIN_USER=root
+WP_ADMIN_PW=root911
+WP_ADMIN_EMAIL=root@wa3.3iw
 WP_USER=ana
 WP_EMAIL=ana@wa3.3iw
-WP_PW=hola
+WP_PW=ana911
 
 
 chown -R www-data:www-data /var/www/html/*
@@ -26,20 +26,22 @@ chown -R www-data:www-data /var/www/html/wordpress/*
 cd /var/www/html/wordpress
 #mv /wp-config.php /var/www/html/wordpress
 
-sed -i 's/define( '\''DB_NAME'\'', '\''database_name_here'\'' );/define( '\''DB_NAME'\'', '\''aelandal_db'\'' );/' /var/www/html/wordpress/wp-config.php
-sed -i 's/define( '\''DB_USER'\'', '\''username_here'\'' );/define( '\''DB_USER'\'', '\''aelandal'\'' );/' /var/www/html/wordpress/wp-config.php
-sed -i 's/define( '\''DB_PASSWORD'\'', '\''password_here'\'' );/define( '\''DB_PASSWORD'\'', '\''aelandal911'\'' );/' /var/www/html/wordpress/wp-config.php
-sed -i 's/define( '\''DB_HOST'\'', '\''localhost'\'' );/define( '\''DB_HOST'\'', '\''mariadb'\'' );/' /var/www/html/wordpress/wp-config.php
+
+
+#sed -i 's/define( '\''DB_NAME'\'', '\''database_name_here'\'' );/define( '\''DB_NAME'\'', '\''aelandal_db'\'' );/' /var/www/html/wordpress/wp-config.php
+#sed -i 's/define( '\''DB_USER'\'', '\''username_here'\'' );/define( '\''DB_USER'\'', '\''aelandal'\'' );/' /var/www/html/wordpress/wp-config.php
+#sed -i 's/define( '\''DB_PASSWORD'\'', '\''password_here'\'' );/define( '\''DB_PASSWORD'\'', '\''aelandal911'\'' );/' /var/www/html/wordpress/wp-config.php
+#sed -i 's/define( '\''DB_HOST'\'', '\''localhost'\'' );/define( '\''DB_HOST'\'', '\''mariadb'\'' );/' /var/www/html/wordpress/wp-config.php
 
 
 
 
 #wp core download --allow-root
 
-#wp config create --dbname=${WP_DB_NAME} --dbuser=${WP_USER_NAME} --dbpass=${WP_USE_PASSWD} --dbhost=mariadb --allow-root
+wp config create --dbname=${WP_DB_NAME} --dbuser=${WP_USER_NAME} --dbpass=${WP_USE_PASSWD} --dbhost=mariadb --allow-root
 
-wp core install --url=mariadb --title=inception --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PW  --admin_email=$WP_ADMIN_EMAIL --allow-root
+wp core install --url=localhost --title=inception --admin_user=${WP_ADMIN_USER} --admin_password=${WP_ADMIN_PW}  --admin_email=${WP_ADMIN_EMAIL} --allow-root
 
-
+wp user create ${WP_USER} ${WP_EMAIL} --role=author --user_pass=${WP_PW} --role=author --allow-root
 exec php-fpm7.3 -F -R
 

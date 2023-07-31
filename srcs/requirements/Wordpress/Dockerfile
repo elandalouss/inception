@@ -18,7 +18,7 @@ WORKDIR /var/www/html/
 
 COPY scripts/script.sh /
 
-#COPY scripts/wp-config.php /
+COPY scripts/wp-config.php /
 
 RUN chmod +x /script.sh
 
