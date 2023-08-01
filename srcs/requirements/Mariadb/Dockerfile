@@ -6,6 +6,8 @@ RUN apt-get update && apt-get install -y mariadb-server
 #RUN chown mysql:mysql /etc/mysql/mariadb.conf.d/50-server.cnf
 #RUN chmod 644 /etc/mysql/mariadb.conf.d/50-server.cnf
 
+#ARG MYSQL_USER MYSQL_PASSWD MYSQL_DB
+
 RUN sed -i 's/bind-address            = 127.0.0.1/bind-address = 0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf
 
 #RUN chown -R mysql:mysql /var/lib/mysql
@@ -20,11 +22,12 @@ RUN chmod +x /script.sh
 
 WORKDIR /
 
-RUN ./script.sh
+#RUN ./script.sh
 
-EXPOSE 3306
+#EXPOSE 3306
 
 #ENTRYPOINT [ "mysqld" ]
 
-CMD ["mysqld"]
+CMD ["./script.sh"]
+#CMD ["mysqld"]
 
