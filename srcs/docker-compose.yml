@@ -22,7 +22,6 @@ services :
       ports : 
         - "443:443"
       container_name : nginx
-        #env_file : .env
       restart : always
       volumes : 
           - wordpress:/var/www/html/wordpress
@@ -35,18 +34,6 @@ services :
       build : 
         context : requirements/Wordpress/
         dockerfile : Dockerfile
-          #args:
-          # WP_DB_NAME: ${WP_DB_NAME}
-          # WP_USER_NAME: ${WP_USER_NAME}
-          # WP_USE_PASSWD: ${WP_USE_PASSWD}
-          #WP_DB_HOST: ${WP_DB_HOST}
-          #DOMAIN_NAME: ${DOMAIN_NAME}
-          #WP_ADMIN_USER: ${WP_ADMIN_USER}
-          #WP_ADMIN_PW: ${WP_ADMIN_PW}
-          #WP_ADMIN_EMAIL: ${WP_ADMIN_EMAIL}
-          #WP_USER: ${WP_USER}
-          #WP_EMAIL: ${WP_EMAIL}
-          #WP_PW: ${WP_PW}
       container_name : wordpress
       restart : always
       volumes :
@@ -60,19 +47,7 @@ services :
       build :
         context : requirements/Mariadb/
         dockerfile : Dockerfile
-          #args:
-          #- MYSQL_USER: ${MYSQL_USER}
-          #- MYSQL_PASSWD: ${MYSQL_PASSWD}
-          #- MYSQL_DB: ${MYSQL_DB}
       container_name : mariab
-        #env_file:
-        # - .env
-          #environment:
-          #- MYSQL_USER=${MYSQL_USER}
-          #- MYSQL_PASSWD=${MYSQL_PASSWD}
-          #- MYSQL_DB=${MYSQL_DB}
-          #env_file:
-          #- .env
       restart : always
       volumes :
         - mariadb:/var/lib/mysql
