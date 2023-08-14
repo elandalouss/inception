@@ -28,7 +28,8 @@ services :
       depends_on:
         - wordpress
       networks :
-          - link
+          - inception
+
     wordpress :
       env_file : .env
       build : 
@@ -39,9 +40,10 @@ services :
       volumes :
           - wordpress:/var/www/html/wordpress
       networks :
-          - link
+          - inception
       depends_on:
         - mariadb
+        
     mariadb :
       env_file: .env
       build :
@@ -52,10 +54,10 @@ services :
       volumes :
         - mariadb:/var/lib/mysql
       networks :
-        - link
+        - inception
 
 networks :
-  link:
-    name: link
+  inception:
+    name: inception
     driver: "bridge" 
 
